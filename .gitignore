@@ -7,5 +7,5 @@ latex/**/*.*
 !latex/*.bib
 !latex/*.cls
 
-docs/
+docs/**/*.*
 !docs/document.pdf
