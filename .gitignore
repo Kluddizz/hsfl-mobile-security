@@ -6,6 +6,7 @@ latex/**/*.*
 !latex/*.sty
 !latex/*.bib
 !latex/*.cls
+!latex/sections/*.tex
 
 docs/**/*.*
 !docs/document.pdf
