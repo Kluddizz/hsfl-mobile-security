@@ -1,0 +1,39 @@
+\documentclass{hsflensburg}
+
+% packages
+%-------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{csquotes}
+\usepackage{placeins}
+
+\MakeOuterQuote{"}
+{\renewcommand{\arraystretch}{2.0}% for the vertical padding
+
+% document title
+%-------------------------------------------
+\title{Wissenschaftliche Ausarbeitung}
+\subtitle{Mobile Security: Sicherheit der Apple-Plattformen}
+
+% authors
+%-------------------------------------------
+\author{
+	\name{Florian Hansen}\\
+	\institution{Hochschule Flensburg}
+	\and
+	\name{Michael Frank}\\
+	\institution{Hochschule Flensburg}
+}
+
+\begin{document}
+	\maketitle
+  
+  \tableofcontents
+
+  \pagebreak
+	\input{sections/introduction.tex}
+
+	\clearpage
+	\bibliography{literature}
+	\bibliographystyle{abbrv}
+\end{document}
