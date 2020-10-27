@@ -26,9 +26,9 @@
 		{\large\bfseries \@title\par}
 		\vspace{1cm}
 		{\huge\bfseries \@subtitle\par}
-		\vspace{3cm}
+    \vfill
 
-		{\normalsize \lineskip .75em
+		{\normalsize
 		\begin{tabular}[t]{c}
 			\@author
 		\end{tabular}\par}
