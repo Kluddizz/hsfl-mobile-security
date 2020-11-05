@@ -1,0 +1,41 @@
+\section{Verschlüsselung}
+Kryptographische Schlüssel werden von dem Betriebsystem für die Ver- und Entschlüsselung von 
+Informationen verwendet. Daten werden verschlüsselt, um die darin enthaltenden Informationen 
+vor potentielle Angreifer geheimzuhalten. Die Verschlüsselung von Daten kann vielfältig eingesetzt werden, 
+typische Anwendungszwecke gehen von der Verschlüsselung einzelner Dateien bis zum gesamten internen Dateisystem.
+
+
+\subsection{Verschlüsselungalgorithmus}
+Für die Verschlüsselung der Informationen zwischen Hardware-Komponenten oder
+Applikationen werden unter iOS unterschiedliche Varianten des etablierten Verschlüsselungsverfahrens
+AES (Advanced Encryption Standard) eingesetzt. AES ist ein symmetrisches Verschlüsselungsverfahren,
+die miteinander interagierenden Parteien müssen also einen gemeinsamen Schlüssel austauschen, welcher
+daraufhin für das ver- und entschlüsseln von Informationen verwendet wird. [Grafik]
+
+\pagebreak
+
+\subsection{Hardwaresicherheit}
+Anhand der Beschreibung des symmetrischen Verschlüsselungsverfahren wird deutlich, dass die Schlüssel in
+gesicherten Umgebung verwaltet und verwendet werden müssen. Anderenfalls kann nicht von der Vertraulichkeit 
+der Daten ausgegangen werden, weil ein Angreifer möglicherweise durch den Diebstahl der Schlüssel den Datenverkehr
+mitlesen kann. \\
+
+Aus diesem Grund werden in modern iOS-, iPadOS- und watchOS-Geräten Sicherheitschips verbaut, die einen sicheren
+Coprozessor enhalten. Dieser Coprozessor wird auch \textit{Secure Enclave} genannt und ist ein hardwarebasierter 
+Schlüsselmanager, der von dem Hauptprozessor isoliert ist. Dadurch wird eine weitere Sicherheitsebene in die 
+Verwaltung der sicherheitskritischen Schlüssel umgesetzt. Die Verschlüsselungsschlüssel werden nicht mal
+der CPU oder dem Kernel des Betriebsystemes offengelegt, weil diese potenziell von einem Angreifer manipuliert
+werden können. Außerdem enthält der Sicherheitschip eine Hardware-AES-Engine, die für die Ver- und Entschlüsselung
+von Dateien mithilfe des AES-Verschlüsselungsalgorithmus eingesetzt wird. Während des Start des Systemes tauschen
+die Secure Enclave und die AES-Engine einen temporären Schlüssel miteinander aus. Mithilfe des temporären Schlüssels
+können die beiden Komponenten sicher innerhalb des Sicherheitschips kommunizieren. \\
+
+\subsection{Schlüsselübersicht}
+Das Betriebssystem verwendet verschiedene Schlüssel für unterschiedliche Funktionen.
+
+
+* Hardwareverschlüsselung
+* Klassenschlüssel
+* Dateisystemschlüssel, Dateischlüssels, Zufallsschlüssel, Key-Wrapping-Schlüssels, Metadatenschlüssel
+* Datensicherheitsschlüssel
+* Medienschlüssel
