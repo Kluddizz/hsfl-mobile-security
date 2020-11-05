@@ -14,17 +14,29 @@ Zugriff auf sensible Daten innerhalb einer Datei verbietet bzw.  einschränkt.
 Vor allem soll der Zugriff von anderen (unbekannten) Apps kontrolliert werden.
 Hierfür existieren auf Apple-Plattformen sogenannte
 \textit{Datensicherheitsklassen}, die von Apps verwendet werden, um den Zugriff
-auf die von der App erstellten Dateien zu kontrollieren.
+auf die von der App erstellten Dateien zu kontrollieren \cite[S. 50]{apple2020}.
 
 Neben dem Speichern von Informationen im Allgemeinen benötigt man weitere,
 sicherheitsrelevante Steuermechanismen für das Ablegen von sensiblen Daten. Vor
-allem bei sehr sensiblen Informationen, wie beispielsweise Passwörter,
-kryptographische Schlüssel und Anmelde-Tokens wünscht man eine sichere
+allem bei sehr sensiblen Informationen, wie beispielsweise Pass\-wör\-ter,
+kryptographische Schlüssel und Anmelde-Tokens, wünscht man eine sichere
 Speicherung, damit nicht jeder Benutzer bzw. jede App Zugriff erhält. Hierfür
 bieten die Apple-Plattformen Schutzmechanismen wie \textit{Access-Control-Lists}
-(ACL), um Schlüsselbünde abzusichern.
+(ACL), um Schlüsselbünde abzusichern \cite[S. 55]{apple2020}.
 
 \subsection{Informationsflusskontrolle von Dateien}
-
+Bevor der Kontrollmechanismus für das Anlegen und Verwalten von Dateien auf
+Apple-Plattformen diskutiert wird, schauen wir uns ein Beispiel an. Stellen wir
+uns vor, es sollen militärische Dokumente verwaltet werden. Sie sollen gelesen
+und verändert werden können. Da es sich meist um Dokumente handelt, die
+besondere Diskretion erfordern, sollte klar sein, dass einfache Soldaten nicht
+dieselben Rechte zum Lesen und Bearbeiten von solchen Dokumenten besitzen wie
+Generäle. Um den Informationsfluss zu kontrollieren, klassifizieren wir die
+Dokumente, sodass nur Entitäten mit dem entsprechenden militärischen Rang Lese-
+und Schreibrechte besitzen. Das Einteilen und fortlaufende Kontrollieren von
+Informationen und deren Fluss durch Anwendungen wird durch eine
+\textit{Informationsflusskontrolle}, englisch \textit{Information Flow Control
+(IFC)}, beschrieben. Kurz zusammengefasst erstellen wir \textit{Gitter} aus
+Klassen, die letztenendes den Informationsfluss durch die Anwendung beschreiben.
 
 \subsection{Kontrolle von Schlüsselbundzugriffen}
