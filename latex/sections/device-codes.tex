@@ -1,2 +1,17 @@
 \section{Gerätecodes}
-
+Ein Gerätecode wird von dem Benutzer des Geräts eingegeben, um sicherzustellen,
+dass dieser die erforderlichen Zugriffsrechte besitzt. Ist ein Gerätecode
+eingerichtet, so wird gleichzeitig automatisch die Datensicherheit aktiviert.
+Das bedeutet, dass die Dateien des Systems verschlüsselt vorliegen und je nach
+Datensicherheitsklasse beim Entsperren des Geräts entschlüsselt werden. Ein
+Gerätecode besteht aus vier oder sechs Ziffern, jedoch können auch
+alphanumerische Zeichenfolgen (\texttt{a-z, A-Z, 0-9}) mit beliebiger Länge als
+Gerätecode eingerichtet werden. Natürlich haben diese Codes dann eine höhere
+Sicherheit als die Varianten, die nur aus Ziffern bestehen. Wichtig zu erwähnen
+ist außerdem, dass die Gerätecodes mit der UID des Geräts verbunden sind. Eine
+Authentifizierung ist deshalb nur auf dem Zielgerät möglich und stellt eine
+Sicherheitsvorkehrung dar, da das Gerät im physischen Besitz des Angreifer sein
+muss. Selbst wenn das der Fall ist, existiert ein Mechanismus, der den
+Authentifizierungsprozess auf 80 Millisekunden festsetzt. Damit sind
+Brute-Force-Angriffe schon bei vierstelligen Gerätecodes, bestehend aus Ziffern,
+sehr unattraktiv für Angreifer.
