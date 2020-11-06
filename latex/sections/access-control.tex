@@ -81,7 +81,7 @@ und Authentifizierung bereitstellt. Das Ziel ist unter anderem, dass der
 Benutzer des Geräts anwesend ist und sich mittels Touch ID oder anderen
 Authentifizierungsmethoden ausweist. ACLs werden in der \textit{Secure-Enclave}
 geprüft und erst dann an den Kernel weitergegeben, falls alle Bedingungen
-erfüllt wurden.
+erfüllt wurden \cite{apple2020}.
 
 Dies allein ist jedoch nicht Schutz genug gegen einen Angreifer. Betrachten wir
 folgendes Beispiel, wird die Problematik klarer. Falls das Gerät in die Hände
@@ -91,4 +91,4 @@ und authentifiziert sich mit diesem. Falls nur die Anwesenheit eines
 authentifizierten Benutzers geprüft werden würde, würde also nicht
 sichergestellt werden, dass nur die bis zum Angriff bekannten Benutzer anwesend
 sind. Hierfür kann zusätzlich kontrolliert werden, ob eine Touch ID verändert
-bzw. wann sie erstellt wurde, um den Zugriff zu kontrollieren.
+bzw. wann sie erstellt wurde, um den Zugriff zu kontrollieren \cite{apple2020}.
