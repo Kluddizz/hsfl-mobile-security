@@ -22,7 +22,8 @@ allem bei sehr sensiblen Informationen, wie beispielsweise Pass\-wör\-ter,
 kryptographische Schlüssel und Anmelde-Tokens, wünscht man eine sichere
 Speicherung, damit nicht jeder Benutzer bzw. jede App Zugriff erhält. Hierfür
 bieten die Apple-Plattformen Schutzmechanismen wie \textit{Access-Control-Lists}
-(ACL), um Schlüsselbünde abzusichern \cite[S. 55]{apple2020}.
+(ACL), um Schlüsselbunde abzusichern und den Zugriff auf Ihnen einzuschränken.
+\cite[S. 55]{apple2020}.
 
 \subsection{Informationsflusskontrolle von Dateien}
 Bevor der Kontrollmechanismus für das Anlegen und Verwalten von Dateien auf
@@ -61,8 +62,33 @@ Datei verwendet wird, kann diese erstellt werden, auch wenn das Gerät gesperrt
 wird. Ist der Erstellungsvorgang abgeschlossen, kann diese Datei erst wieder
 gelesen werden, wenn das Gerät entsperrt wird.}
 
-\paragraph{Geschützt bis zur ersten Authentifizierung.}{}
+\paragraph{Geschützt bis zur ersten Authentifizierung.}{Genau wie die Klasse
+\textit{Vollständiger Schutz} wird mithilfe des Benutzercodes und der UID des
+Geräts ein Klassenschlüssel entschlüsselt. Der Unterschied liegt nun darin, dass
+dieser entschlüsselte Klassenschlüssel beim Sperren des Geräts nicht verworfen
+wird. Erst bei Neustart muss dieser erneut entschlüsselt werden. Dieser Schutz
+ist vergleichbar mit der Verschlüsselung der Festplatten bei Desktoprechnern.}
 
-\paragraph{Kein Schutz.}{}
+\paragraph{Kein Schutz.}{Der Klassenschlüssel wird hier nur mithilfe der UID des
+Geräts entschlüsselt bzw. geschützt. Auch wenn einer Datei keine
+Sicherheitsklasse zugewiesen wurde, wird diese vom Betriebssystem verschlüsselt
+gespeichert.}
 
 \subsection{Kontrolle von Schlüsselbundzugriffen}
+Damit nicht jeder auf die Schlüsselbunde eines Geräts zugreifen kann, werden
+\textit{Access-Control-Lists} (ACLs) verwendet, die Richtlinien für den Zugriff
+und Authentifizierung bereitstellt. Das Ziel ist unter anderem, dass der
+Benutzer des Geräts anwesend ist und sich mittels Touch ID oder anderen
+Authentifizierungsmethoden ausweist. ACLs werden in der \textit{Secure-Enclave}
+geprüft und erst dann an den Kernel weitergegeben, falls alle Bedingungen
+erfüllt wurden.
+
+Dies allein ist jedoch nicht Schutz genug gegen einen Angreifer. Betrachten wir
+folgendes Beispiel, wird die Problematik klarer. Falls das Gerät in die Hände
+eines Angreifers gerät, wird dieser versuchen, Zugriff auf Schlüsselbunde zu
+bekommen. Hierfür legt sich der Angreifer einfach einen neuen Fingerabdruck an
+und authentifiziert sich mit diesem. Falls nur die Anwesenheit eines
+authentifizierten Benutzers geprüft werden würde, würde also nicht
+sichergestellt werden, dass nur die bis zum Angriff bekannten Benutzer anwesend
+sind. Hierfür kann zusätzlich kontrolliert werden, ob eine Touch ID verändert
+bzw. wann sie erstellt wurde, um den Zugriff zu kontrollieren.
