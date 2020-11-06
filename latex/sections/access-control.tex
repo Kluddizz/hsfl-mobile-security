@@ -43,23 +43,23 @@ Beim nächsten Beispiel handelt es sich um eine App, die beispielsweise
 Kontaktdaten in eine Datei auf das Gerät (iOS) speichert. Auch hier möchten wir
 sicherstellen, dass die Informationen nur unter bestimmten Umständen ausgelesen
 werden können.  Genau wie bei der Informationsflusskontrolle. Wenn eine App auf
-iOS eine Datei schreibt, wird dieser Datei zusätzlich eine
-Datensicherheitsklasse zugewiesen, um dieses Ziel zu erreichen. Diese Klasse
-gibt dann an, wann auf die Informationen zugegriffen bzw. wann die Datei gelesen
-werden darf. Hierfür wurden vier Klassen implementiert, die im Folgenden kurz
-erläutert werden.
+iOS eine Datei schreibt, wird dieser Datei laut \cite{appledev,apple2020}
+zusätzlich eine Datensicherheitsklasse zugewiesen, um dieses Ziel zu erreichen.
+Eine Sicherheitsklasse gibt an, wann auf die Informationen zugegriffen bzw.
+wann die Datei gelesen werden darf. Hierfür wurden vier Klassen implementiert,
+die im Folgenden kurz erläutert werden.
 
 \paragraph{Vollständiger Schutz.}{Die Verschlüsselung des Klassenschlüssels wird
 mithilfe des Benutzercodes und der eindeutigen UID \textit{(unique identifier)}
 des Geräts realisiert. Nachdem das Gerät gesperrt wird, wird der entschlüsselte
 Klassenschlüssel verworfen und erst bei erneuter Entsperrung entschlüsselt.
 Dateien mit dieser Sicherheitsklasse können also nicht gelesen oder geschrieben
-werden, solange das Gerät gesperrt ist \cite{appledev}.}
+werden, solange das Gerät gesperrt ist.}
 
 \paragraph{Geschützt, außer wenn offen.}{Wenn diese Sicherheitsklasse für eine
 Datei verwendet wird, kann diese erstellt werden, auch wenn das Gerät gesperrt
 wird. Ist der Erstellungsvorgang abgeschlossen, kann diese Datei erst wieder
-gelesen werden, wenn das Gerät entsperrt wird \cite{appledev}.}
+gelesen werden, wenn das Gerät entsperrt wird.}
 
 \paragraph{Geschützt bis zur ersten Authentifizierung.}{}
 
