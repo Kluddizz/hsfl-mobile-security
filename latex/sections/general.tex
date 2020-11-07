@@ -1,0 +1,99 @@
+\section{Sicherheit im Alltag}
+Für die Sicherheit im Alltag hat Apple eine Vielzahl von Systemmechanismen implementiert, 
+die den Schutz der Benutzerdaten sicherstellen. Die Dateiverschlüsselung bei Endgeräten mit iOS- und 
+iPadOS als Betriebssysteme wird von Apple als Datensicherheit bezeichnet und ist das Pendant zum 
+FileVault unter macOS. \\
+
+Der Ausgangspunkt für die Hierarchien der Schlüsselverwaltung befindet sich bei Geräten 
+mit SEP (Secure Enclave Processor, ab A7 und neuer) im dedizierten Silizium der Secure Enclave. 
+Hier werden die Schlüssel und biometrische Daten für die Verwendung von Touch ID und Face ID 
+hinterlegt. Dieser isolierte Bereich ist für den AP (Application Processor) nicht zugänglich, wenngleich 
+das RAM von beiden Prozessoren geteilt wird, denn der Speicherbereich des SEP ist verschlüsselt. \\
+
+Als weiteren Sicherheitsmechanismus werden Zugriffssteuerungen im Kernel erzwungen. Dadurch wird der unbefugte 
+Zugriff auf Daten verhindert. Der Datenzugriff von Apps wird in der Regel durch Sandboxing realisiert und durch die 
+Forcierung von Data Vaults ergänzt. Simplifiziert sind Data Vaults invertierte Sandboxes, die nicht die Aufrufe einer App, 
+sondern den Zugriff auf geschützte Daten einschränken. \\
+
+Die offensichtlichen Sicherheitsmechanismen, die der Benutzer im Alltag erfährt, werden im Folgenden vorgestellt.
+
+\subsection{Gerätecodes}
+Mit der Einrichtung eines Gerätecodes wird automatisch die Datensicherheit, also die Dateiverschlüsselung, aktiviert. 
+Die Gerätecodes werden durch den Nutzer eingerichtet und bestehen aus vier bzw. sechts Ziffern oder einem alphanumerischen 
+Code mit beliebiger Länge. Der Gerätecode wird nicht nur zum Entsperren des Geräts verwendet, sondern bestimmt 
+die Entropie bestimmter Verschlüsselungscodes. Die Architektur verknüpft den Gerätecode mit der UID, einer eindeutigen
+Geräte-ID, wodurch bspw. Brute-Force-Attacken nur direkt auf dem Endgerät durchgeführt werden können.
+Diese Form der Attacke wird zudem, durch einen zunehmenden Timeout bei falschen Gerätecode-Eingaben, erschwert.
+\\
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{c|c}
+	 Versuche & Erzwungene Verzögerung (Timeout) \\
+	\hline
+	 1 - 4 & Keine  \\
+	\hline 
+	 5 & 1 Minute  \\
+	\hline 
+	 6 & 5 Minuten  \\
+	\hline 
+	 7 - 8 & 15 Minuten  \\
+	\hline 
+	 9 &  1 Stunde  \\
+	\end{tabular}
+	  \caption{Timeouts bei falschen Gerätecode-Eingaben}
+\end{table}
+
+
+Apple gibt an, dass es über fünfeinhalb Jahre dauern würde, um alle sechsstelligen alphanumerischen Gerätecodes mit 
+Kleinbuchstaben und Zahlen auszuprobieren \cite[S. 63]{apple2020}. Es liegt auf der Hand, dass ein starker Gerätecode 
+(Länge und Komplexität) zu einer höheren Sicherheit führt. Das Betriebssystem bietet zudem die Option, 
+bei zehn aufeinander folgenden Fehlversuchen alle Daten des Gerätes zu löschen. \\
+
+Als Alternative zum klassischen Passwort hat Apple weitere Authentifizierungsverfahren wie Touch- und Face ID eingeführt. 
+Die biometrischen Daten stellen einen deutlich stärkeren Gerätecode dar, der die Wirksamkeit der Entropie der 
+Verschlüsselungsschlüssel faktisch erhöht und dadurch die Datensicherheit verbessert. Jedoch wurde in einer App von
+Citrix Worx die Touch ID Authentifizierung durch ein definiertes Prozedere ausgehebelt, so dass es Angreifern möglich 
+war, auf geschützte Bereiche dieser App zuzugreifen. Die Ursache lag in einer fehlerhaften Implementierung, die dafür 
+gesorgt hat, dass der Gerätecode falsch gespeichert wurde (Improper platform usage, Mobile Top10 2016, OWASP). \\
+
+
+\subsection{Sicherheit vor unautorisierten  Datenverbindungen}
+Physisch angeschlossene Geräte,  z.B. Mac, PC oder Zubehör, werden über die Lightning-, USB- oder Smart 
+Connector-Schnittstelle mit dem Apple-Gerät verbunden. Aufgrund der Tatsache, dass die Ökosysteme der
+angeschlossenen Geräte vielfältig sein können und es keine kryptographisch zuverlässige Möglichkeit gibt,
+die Geräte vor einer Datenverbindung zu identifizieren, verlangen iPhones bzw. iPads die Eingabe des Gerätecodes,
+bevor eine Datenverbindung aufgebaut werden kann. \cite[S. 65]{apple2020} Dies verhindert den unautorisierten
+Zugriff auf die Daten durch ein Fremdsystem. Nachdem die Datenverbindung zu einem Fremdsystem autorisiert wurde, 
+muss der Gerätecode, für eine bestimmte Zeitspanne, nicht mehr für den Verbindungsaufbau zu dem System 
+eingegeben werden. Dadurch können Nutzer, die regelmäßige Verbindungen zu bestimmten Geräten herstellen möchten,
+für eine Zeitspanne auf eine erneute Authentifizierung verzichten. \\
+
+\subsection{Schutz persönlicher Daten}
+Mobile Anwendungen benötigen oftmals den Zugriff auf bestimmte Funktionaliten oder Daten des Smartphones.
+Diese stehen den Anwendungen aber nicht einfach zur Verfügung, Nutzer können für jede App festlegen, auf 
+welche personenbezogene Informationen zugegriffen werden darf. Realisiert wird dies mit verschiedenen Technologien 
+wie bspw. dem Data Vault. In den Einstellungen des Betriebssystems kann der Nutzer einer App die Rechte für den Zugriff 
+auf individuelle Informationen geben. In einigen systemrelevanten Apps von iOS und iPadOS wird der Zugriff jedoch erzwungen, 
+dazu zählen bspw. Kalender, Kamera, Bluetooth und Fitness (Health). \\ 
+
+Seit der iOS bzw. iPadOS Version 13.4 werden die Daten der Apps von externen Anbieter (nicht Apple) in einem Data Vault geschützt, 
+um den Schutz vor unbefugten Datenzugriffen zu gewährleisten. Die Apps unter iOS und iPadOS erhalten bei der Nutzung von iCloud 
+standardmäßig Zugriff auf die iCloud Drive. Der Nutzer kann den iCloud-Zugriff jedoch in den Einstellungen ändern und einschränken. 
+
+\subsection{Klassifizierung der Sicherheitschipes}
+Im Rahmen dieser Ausarbeitung werden oftmals die Sicherheitschips (SoCs - System on Chip) der mobilen Endgeräte thematisiert. 
+Die meisten dieser Sicherheitschips basieren auf einer ARM-Architektur und werden in die meisten der Apple-Produkte wie bspw.
+iPhone, iPad, Apple Watch, etc. verbaut. Die Chips unterscheiden sich dabei u.a. durch unterschiedliche Anwendungszwecke, 
+Fertigungstechnologien, integrierte Co-Prozessoren, AI-Beschleuniger und der Anzahl der integrierten Transistoren. Für eine 
+bessere Übersicht werden folgend die verschiedenen SoC-Serien, und die Produkte in denen sie verbaut werden, aufgelistet.
+
+\begin{itemize}
+\item \textit{A series}: iPhone und iPad
+\item \textit{S series}: Apple Watch
+\item \textit{T series} series: macOS-Produkte (MacBook, Mac-Computer)
+\item \textit{W series}: AirPods und HomePod
+\end{itemize}
+
+
+
