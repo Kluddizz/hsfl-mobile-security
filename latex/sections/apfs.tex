@@ -38,8 +38,6 @@ Das APFS unterstuetzt mit Snapshotes eine Funktion zum Erstellen von Backups des
 Anders formuliert, erstellt ein Snapshot also einen Klon aller Dateien des Dateisystems zum aktuellen Zeitpunkt. Soll das System also mittels Snapshot auf einen vorherigen Zustand zurueckgesetzt werden, so muessen keine Dateien kopiert werden, sondern lediglich die Verweise auf bestehende Dateien veraendert, beziehungsweise auf den Stand des Snapshots zurueckgesetzt werden.\\
 Die einzige Ausnahme bilden dabei Bloecke, die veraendert oder geloescht wurden. Diese werden dem Snapshot hinzugefuegt und muessen im Falle einer Wiederherstellung tatsaechlich kopiert werden.
 
-\subsection{Datenbackups mit Verschluesselung}
-???
 \subsection{Vergleich zu MacOS}
 Das APFS wird mittlerweile sowohl auf iOS als auch auf MacOS Geraeten eingesetzt. Allerdings sind die Features von APFS auf iOS und MacOS jedoch unterschiedlich. Der Hauptunterschied ist dabei die Verwendung von FileVault unter MacOS, welcher unter iOS nicht nutzbar ist.\\
 FileVault ist dabei dafuer zustaendig, die Volumes des APFS zu verschluesseln. Dieser Schluessel muss bei jedem Startvorgang vom Nutzer unter Eingabe seiner Anmeldeinformationen freigegeben werden.\\
