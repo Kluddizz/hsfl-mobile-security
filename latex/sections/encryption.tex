@@ -1,8 +1,9 @@
 \section{Verschlüsselung}
 Kryptographische Schlüssel werden von dem Betriebsystem für die Ver- und Entschlüsselung von 
 Informationen verwendet. Daten werden verschlüsselt, um die darin enthaltenden Informationen 
-vor potentielle Angreifer geheimzuhalten. Die Verschlüsselung von Daten kann vielfältig eingesetzt werden, 
-typische Anwendungszwecke können bspw. die Verschlüsselung einzelner Dateien oder gar des gesamten internen Dateisystems sein.
+vor potentielle Angreifer geheimzuhalten. Die Verschlüsselung von Daten kann vielfältig eingesetzt 
+werden, typische Anwendungszwecke können bspw. die Verschlüsselung einzelner Dateien oder gar 
+des gesamten internen Dateisystems sein. \cite{symmetricenc}
 
 
 \subsection{Verschlüsselungalgorithmus}
@@ -10,12 +11,12 @@ Für die Verschlüsselung der Datenaustausches zwischen Komponenten, Systemen od
 werden unter iOS unterschiedliche Varianten des etablierten Verschlüsselungsverfahrens
 AES (Advanced Encryption Standard) eingesetzt. AES ist ein symmetrisches Verschlüsselungsverfahren,
 die miteinander interagierenden Parteien müssen also einen gemeinsamen Schlüssel austauschen, welcher
-daraufhin für das ver- und entschlüsseln von Informationen verwendet wird. \\
+daraufhin für das ver- und entschlüsseln von Informationen verwendet wird. \cite{symmetricenc} \cite{apple2020} \\
 
 	\begin{figure}[h]
 		\centering
 		\includegraphics[width=135mm]{images/symmetric.png}
-		\caption{Symmetrische Verschlüsselung}
+		\caption{Symmetrische Verschlüsselung \cite{symmetricenc}}
 		\label{fig:symmetric}
 	\end{figure}
 
@@ -25,7 +26,7 @@ daraufhin für das ver- und entschlüsseln von Informationen verwendet wird. \\
 Anhand der Beschreibung des symmetrischen Verschlüsselungsverfahren wird deutlich, dass die Schlüssel in
 gesicherten Umgebung verwaltet und verwendet werden müssen. Anderenfalls kann nicht von der Vertraulichkeit 
 der Daten ausgegangen werden, weil ein Angreifer möglicherweise durch den Diebstahl der Schlüssel den Datenverkehr
-mitlesen kann. \\
+mitlesen kann. \cite{apple2020} \\
 
 Aus diesem Grund werden in modern iOS-, iPadOS- und watchOS-Geräten Sicherheitschips verbaut, die einen sicheren
 Coprozessor enhalten. Dieser Coprozessor wird auch \textit{Secure Enclave} genannt und ist ein hardwarebasierter 
@@ -35,19 +36,19 @@ der CPU oder dem Kernel des Betriebsystemes offengelegt, weil diese potenziell v
 werden können. Außerdem enthält der Sicherheitschip eine Hardware-AES-Engine, die für die Ver- und Entschlüsselung
 von Dateien mithilfe des AES-Verschlüsselungsalgorithmus eingesetzt wird. Während des Start des Systemes tauschen
 die Secure Enclave und die AES-Engine einen temporären Schlüssel miteinander aus. Mithilfe des temporären Schlüssels
-können die beiden Komponenten sicher innerhalb des Sicherheitschips kommunizieren. \\
+können die beiden Komponenten sicher innerhalb des Sicherheitschips kommunizieren. \cite{apple2020hardware_security} \cite{apple2020} \\
 
 \subsection{Schlüssel- und Passwörterverwaltung}
 Sicherheitskritische Daten wie kryptographische Schlüssel oder Passwörter müssen in einer gesicherten Umgebung
 verwaltet werden können. Mit der Secure Enclave wurde bereits eine Methode zum Speichern dieser Daten erläutert, 
-in den folgenden Abschnitten werden weitere Methoden, die iOS und iPadOS verwenden, vorgestellt.
+in den folgenden Abschnitten werden weitere Methoden, die iOS und iPadOS verwenden, vorgestellt. \cite{apple2020}
 
 \subsubsection{Schlüsselbund}
 Mobile Anwendungen müssen oftmals vertrauliche Daten, wie bspw. Passwörter oder Tokens, auf dem Gerät hinterlegen. 
 Das Betriebssystem bietet dafür den sogenannten Schlüsselbund an. Diese Komponente ist eine SQLite-Datenbank,
 welche die sensiblen Daten in verschlüsselter Form speichert. Der Schlüsselbund befindet sich dabei \textbf{nicht} in der
 Secure Enclave, sondern im Gerätespeicher. Dies ist aber dennoch sicher, weil der Verschlüsselungsschlüssel, welcher
-für die Entschlüsselung der Daten benötigt wird, sich in der Secure Enclave befindet.
+für die Entschlüsselung der Daten benötigt wird, sich in der Secure Enclave befindet. \cite{apple2020}
 
 \subsubsection{Zugriff auf den Schlüsselbund durch Apps}
 Wie bereits erläutert, ist der Schlüsselbund durch eine verschlüsselte SQLite-Datenbank realisiert, die im Dateisystem hinterlegt ist. Eine App kann den Schlüsselbund verwenden um Passwörter, Kreditkarteninformationen, Zertifikate, Identitäten oder auch kurze Notizen verschlüsselt zu hinterlegen \cite{apple2020keychain_services}.
@@ -66,7 +67,7 @@ Apps die neben dem Schlüsselbund auch weitere Daten austauschen möchten, sind 
 
 \subsubsection{Keybags}
 Keybags sammeln und verwalten die Schlüssel der verschiedenen Datensicherheitsklassen. Jeder Keybag verwaltet aber
-nur die Klassenschlüssel seines Types, im Kapitel \textit{X. Information Flow Control} werden diese vorgestellt und ihre 
-Funktionsweise erklärt.
+nur die Klassenschlüssel seines Types, im dem folgenden Kapitel werden diese vorgestellt und ihre 
+Funktionsweise erklärt. \cite{apple2020}
 
 
