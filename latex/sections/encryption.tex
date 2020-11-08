@@ -69,5 +69,17 @@ Apps die neben dem Schlüsselbund auch weitere Daten austauschen möchten, sind 
 Keybags sammeln und verwalten die Schlüssel der verschiedenen Datensicherheitsklassen. Jeder Keybag verwaltet aber
 nur die Klassenschlüssel seines Types, im dem folgenden Kapitel werden diese vorgestellt und ihre 
 Funktionsweise erklärt. \cite{apple2020}
+Für die verschiedenen kryptografischen Verfahren, die bei der Gewährleistung von Sicherheit in iOS zur Anwendung kommen, werden Schlüssel benötigt. Diese werden in so genannten \textit{Keybags} abgelegt und können mit Hilfe des \textit{keybagd} Deamon ausgelesen und gespeichert werden.
+Es gibt in iOS die fünf \textit{Keybags}, \textit{User}, \textit{Device}, \textit{Backup}, \textit{Escrow} und \textit{iCloud Backup}, die unter anderem auch bei den Datei- beziehungsweise  Schlüsselbund-Datensicherheitsklassen  zum Einsatz kommen.\cite{apple2020}
+
+\paragraph{User}{Enthält alle normalen, für den Betrieb notwendigen, Klassenschlüssel und wird durch die \textit{Secure Enclave} verwaltet. Ein Zugriff ist erst nach erfolgreichem Entsperren des Gerätes möglich. }
+
+\paragraph{Device}{Wird für das Speichern von Schlüsseln verwendet, die unabhängig von Benutzerkonten benötitgt werden.}
+
+\paragraph{Backup}{Enthält die Schlüssel, die für das Erstellen eines verschlüsselten Backups durch iTunes auf einem Computer, notwendig sind. Dieser \textit{Keybag} wird durch ein Passwort gesichert, welches in iTunes festgelegt wird.}
+
+\paragraph{Escrow}{Dieser \textit{Keybag} enthält Schlüssel für die Verbesserung der Benutzerfreundlichkeit beim Synchronisieren von Geräten. Dafür muss ein Gerät in einem ungesperrten Zustand mit iTunes verbunden werden, wodurch eine Paarung stattfindet, sodass der Gerätecode nicht erneut eingegeben werden muss. }
+
+\paragraph{iCloud Backup}{Ermöglicht die gleiche Funktionsweise zum \textit{Keybag} \textit{Backup}, für die Realisierung eines Backups durch die iCloud. }
 
 
