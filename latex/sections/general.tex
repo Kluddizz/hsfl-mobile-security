@@ -2,18 +2,19 @@
 Für die Sicherheit im Alltag hat Apple eine Vielzahl von Systemmechanismen implementiert, 
 die den Schutz der Benutzerdaten sicherstellen. Die Dateiverschlüsselung bei Endgeräten mit iOS- und 
 iPadOS als Betriebssysteme wird von Apple als Datensicherheit bezeichnet und ist das Pendant zum 
-FileVault unter macOS. \cite{apple2020} \\
+FileVault unter macOS \cite{apple2020}.
 
 Der Ausgangspunkt für die Hierarchien der Schlüsselverwaltung befindet sich bei Geräten 
 mit SEP (Secure Enclave Processor, ab A7 und neuer) im dedizierten Silizium der Secure Enclave. 
 Hier werden die Schlüssel und biometrische Daten für die Verwendung von Touch ID und Face ID 
 hinterlegt. Dieser isolierte Bereich ist für den AP (Application Processor) nicht zugänglich, wenngleich 
-das RAM von beiden Prozessoren geteilt wird, denn der Speicherbereich des SEP ist verschlüsselt. \cite{apple2020} \\
+das RAM von beiden Prozessoren geteilt wird, denn der Speicherbereich des SEP
+ist verschlüsselt \cite{apple2020}.
 
 Als weiteren Sicherheitsmechanismus werden Zugriffssteuerungen im Kernel erzwungen. Dadurch wird der unbefugte 
 Zugriff auf Daten verhindert. Der Datenzugriff von Apps wird in der Regel durch Sandboxing realisiert und durch die 
 Forcierung von Data Vaults ergänzt. Simplifiziert sind Data Vaults invertierte Sandboxes, die nicht die Aufrufe einer App, 
-sondern den Zugriff auf geschützte Daten einschränken. \cite{apple2020} \\
+sondern den Zugriff auf geschützte Daten einschränken \cite{apple2020}.
 
 Die offensichtlichen Sicherheitsmechanismen, die der Benutzer im Alltag erfährt, werden im Folgenden vorgestellt.
 
@@ -35,18 +36,20 @@ Authentifizierungsprozess auf 80 Millisekunden festsetzt. Damit sind
 Brute-Force-Angriffe schon bei vierstelligen Gerätecodes, bestehend aus Ziffern,
 sehr unattraktiv für Angreifer. Zusätzlich können Touch ID oder Face ID als
 Gerätecodes verwendet werden. Dies bietet dem Benutzer eine bessere
-User-Experience und eine stärkere Sicherheit beim Verschlüsseln von Daten. \cite{apple2020}
+User-Experience und eine stärkere Sicherheit beim Verschlüsseln von Daten
+\cite{apple2020}.
 
 \subsection{Sicherheit vor unautorisierten  Datenverbindungen}
 Physisch angeschlossene Geräte,  z.B. Mac, PC oder Zubehör, werden über die Lightning-, USB- oder Smart 
 Connector-Schnittstelle mit dem Apple-Gerät verbunden. Aufgrund der Tatsache, dass die Ökosysteme der
 angeschlossenen Geräte vielfältig sein können und es keine kryptographisch zuverlässige Möglichkeit gibt,
 die Geräte vor einer Datenverbindung zu identifizieren, verlangen iPhones bzw. iPads die Eingabe des Gerätecodes,
-bevor eine Datenverbindung aufgebaut werden kann. \cite[S. 65]{apple2020} Dies verhindert den unautorisierten
+bevor eine Datenverbindung aufgebaut werden kann \cite[S. 65]{apple2020}. Dies verhindert den unautorisierten
 Zugriff auf die Daten durch ein Fremdsystem. Nachdem die Datenverbindung zu einem Fremdsystem autorisiert wurde, 
 muss der Gerätecode, für eine bestimmte Zeitspanne, nicht mehr für den Verbindungsaufbau zu dem System 
 eingegeben werden. Dadurch können Nutzer, die regelmäßige Verbindungen zu bestimmten Geräten herstellen möchten,
-für eine Zeitspanne auf eine erneute Authentifizierung verzichten. \cite{apple2020} \\
+für eine Zeitspanne auf eine erneute Authentifizierung verzichten
+\cite{apple2020}.
 
 \subsection{Schutz persönlicher Daten}
 Mobile Anwendungen benötigen oftmals den Zugriff auf bestimmte Funktionaliten oder Daten des Smartphones.
@@ -54,18 +57,21 @@ Diese stehen den Anwendungen aber nicht einfach zur Verfügung, Nutzer können f
 welche personenbezogene Informationen zugegriffen werden darf. Realisiert wird dies mit verschiedenen Technologien 
 wie bspw. dem Data Vault. In den Einstellungen des Betriebssystems kann der Nutzer einer App die Rechte für den Zugriff 
 auf individuelle Informationen geben. In einigen systemrelevanten Apps von iOS und iPadOS wird der Zugriff jedoch erzwungen, 
-dazu zählen bspw. Kalender, Kamera, Bluetooth und Fitness (Health). \cite{apple2020} \\ 
+dazu zählen bspw. Kalender, Kamera, Bluetooth und Fitness (Health)
+\cite{apple2020}.
 
 Seit der iOS bzw. iPadOS Version 13.4 werden die Daten der Apps von externen Anbieter (nicht Apple) in einem Data Vault geschützt, 
 um den Schutz vor unbefugten Datenzugriffen zu gewährleisten. Die Apps unter iOS und iPadOS erhalten bei der Nutzung von iCloud 
-standardmäßig Zugriff auf die iCloud Drive. Der Nutzer kann den iCloud-Zugriff jedoch in den Einstellungen ändern und einschränken. \cite{apple2020}
+standardmäßig Zugriff auf die iCloud Drive. Der Nutzer kann den iCloud-Zugriff
+jedoch in den Einstellungen ändern und einschränken \cite{apple2020}.
 
 \subsection{Klassifizierung der Sicherheitschipes}
 Im Rahmen dieser Ausarbeitung werden oftmals die Sicherheitschips (SoCs - System on Chip) der mobilen Endgeräte thematisiert. 
 Die meisten dieser Sicherheitschips basieren auf einer ARM-Architektur und werden in die meisten der Apple-Produkte wie bspw.
 iPhone, iPad, Apple Watch, etc. verbaut. Die Chips unterscheiden sich dabei u.a. durch unterschiedliche Anwendungszwecke, 
 Fertigungstechnologien, integrierte Co-Prozessoren, AI-Beschleuniger und der Anzahl der integrierten Transistoren. Für eine 
-bessere Übersicht werden folgend die verschiedenen SoC-Serien, und die Produkte in denen sie verbaut werden, aufgelistet. \cite{apple2020}
+bessere Übersicht werden folgend die verschiedenen SoC-Serien, und die Produkte
+in denen sie verbaut werden, aufgelistet \cite{apple2020}.
 
 \begin{itemize}
 \item \textit{A series}: iPhone und iPad
