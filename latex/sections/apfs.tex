@@ -14,7 +14,7 @@ einem Container. Wird also ein Speichermedium mit einer Speicherkapazität von
 \textit{APFS}-Container zu erstellen. In diesem Container können dann beliebig
 viele Volumes mit einer Größe von 400 GiB erstellt werden.
 
-Wird dies getan, so benutzen alle Volumes dieselben 400 GiB des Speichermediums,
+Wird dies getan, benutzen alle Volumes dieselben 400 GiB des Speichermediums,
 konkurrieren andererseits damit aber auch um denselben Speicherplatz. Werden zum
 Beispiel 3 400 GiB grosse Volumes auf dem Container erstellt, wobei die
 einzelnen Volumes jeweils tatsächlich 100 GiB, 30 GiB und 20 GiB verwenden, so
@@ -47,7 +47,7 @@ zugreifen können.
 
 \subsubsection{Metadaten}
 Im Gegensatz zu den eigentlichen Dateien, teilen sich alle Metadaten einen
-Schluessel \cite[S. 50]{apple2020}. Dieser wird einmalig bei der Einrichtung des
+Schlüssel \cite[S. 50]{apple2020}. Dieser wird einmalig bei der Einrichtung des
 iOS-Gerätes erstellt und in der \textit{Secure Enclave} gespeichert.
 Weitergehend wird dieser Schlüssel mit einem weiteren Schlüssel verschlüsselt,
 der allerdings im \textit{Effaceable Storage} gespeichert ist.
@@ -72,17 +72,17 @@ Informationen. Dabei kann der Nutzer jederzeit einsehen, welche Apps welche
 dieser Zugriffsrechte haben und diese entziehen oder neue gewähren.
 
 Einzige Ausnahme bilden dabei einige Systemapplikationen wie Kalender, Kamera,
-Medien oder aehnliches. Diese Systemapplikationen erfordern auf Grund ihrer
+Medien oder ähnliches. Diese Systemapplikationen erfordern auf Grund ihrer
 Funktionalität einen Zugriff auf die persönlichen Daten und setzen diesen
 deshalb voraus.
 
 Auf diese Weise hat der Nutzer zu jedem Zeitpunkt volle Information und
-Kontrolle ueber den Verbleib seiner Daten.
+Kontrolle über den Verbleib seiner Daten.
 
 \subsection{Copy-On-Write}
 Um unnötige Kopien oder korrupte Dateien zu vermeiden, also die Integrität der
 gespeicherten Daten sicher zu stellen, setzt \textit{APFS} auf einen
-Copy-On-Write Ansatz fuer die Metadaten von Dateien \cite{golem}. Diese Metadaten
+Copy-On-Write Ansatz für die Metadaten von Dateien \cite{golem}. Diese Metadaten
 werden also erst geupdatet, sobald eine Datei beziehungsweise ein Block des
 Speichermediums wirklich verändert werden soll.
 
@@ -99,7 +99,7 @@ Wird eine Datei unter APFS geklont, so wird diese nicht komplett physisch auf
 eine andere Stelle des Speichermediums kopiert. Stattdessen werden lediglich
 Verweise auf die ursprüngliche Datei erstellt. Werden zu dem Klon weitere Blöcke
 hinzugefügt oder verändert, so werden für diese Neuerungen weitere Verweise
-erstellt, während die bestehenden Verweise auf die Ur-Datei erhalten bleiben.
+erstellt, während die bestehenden Verweise auf die Ursprungs-Datei erhalten bleiben.
 
 Dieser Ansatz beschleunigt das Kopieren von Dateien enorm, da nicht die gesamte
 Datei kopiert wird, sondern lediglich ein Link -- beziehungsweise eine neue
@@ -109,10 +109,10 @@ zweimal vorhanden sein muss, wird damit außerdem Speicherplatz gespart.
 Ein weiterer Vorteil dieses Vorgehens ist es weiterhin, dass es damit einfach
 ist eine Art Versionshistorie von Dateien zu erstellen und damit gemachte
 Änderungen besser nachvollziehen zu können oder einfacherer zu vorherigen
-Versionen zurück zu springen.
+Versionen zurückspringen.
 
 Die Nachvollziehbarkeit von Transaktionen wird außerdem durch eine bessere
-Auflösung der Zeitstempel im System (1 ns) verglichen mit \textit{HFS+} (1 s)
+Auflösung der Zeitstempel im System (1 ns), verglichen mit \textit{HFS+} (1 s),
 gefördert \cite{arstechnica}.
 
 
@@ -128,33 +128,33 @@ einen vorherigen Zustand zurückgesetzt werden, so müssen keine Dateien kopiert
 werden, sondern lediglich die Verweise auf bestehende Dateien verändert,
 beziehungsweise auf den Stand des Snapshots zurückgesetzt werden.
 
-Die einzige Ausnahme bilden dabei Bloecke, die verändert
+Die einzige Ausnahme bilden dabei Blöcke, die verändert
 oder gelöscht wurden. Diese werden dem Snapshot hinzugefügt und müssen im Falle
 einer Wiederherstellung tatsächlich kopiert werden.
 
 Durch die standardmäßige Verschlüsselung von Daten mittels Klassen- und
-Dateischluesseln, welche beim klonen von Dateien bestehen bleibt sind Backups
+Dateischlüsseln, welche beim klonen von Dateien bestehen bleiben, sind Backups
 automatisch verschlüsselt \cite[S. 50]{apple2020}. Da die UID des Gerätes Teil
 der Klassenschlüssel ist \cite[S. 50]{apple2020}, wird außerdem gewährleistet,
-dass Backups nur auf dem Gerät auf dem sie erstellt wurden wiederhergestellt
+dass Backups nur auf dem Gerä,t auf dem sie erstellt wurden, wiederhergestellt
 werden können. Bei Verlust des Speichermediums ist ein Auslesen des Snapshots
 auf anderen Geräten also nicht möglich.
 
 
 \subsection{Vergleich zu MacOS}
 Das \textit{APFS} wird mittlerweile sowohl auf iOS als auch auf MacOS Geräten
-eingesetzt. Allerdings sind die Features von APFS auf iOS und MacOS jedoch
+eingesetzt. Allerdings sind die Features von APFS auf iOS und MacOS
 unterschiedlich. Der Hauptunterschied ist dabei die Verwendung von
 \textit{FileVault} unter MacOS \cite[S. 56 ff]{apple2020}, im Gegensatz zur
 \textit{Datensicherheit} unter iOS \cite[S. 48 ff]{apple2020}.
 
-\textit{FileVault} ist dabei dafuer zustaendig, die Volumes des \textit{APFS} zu
+\textit{FileVault} ist dabei dafür zuständig, die Volumes des \textit{APFS} zu
 verschlüsseln. Dieser Schlüssel muss bei jedem Startvorgang vom Nutzer unter
 Eingabe seiner Anmeldeinformationen freigegeben werden.
 
 Ein weiterer Unterschied zwischen der Verwendung vom \textit{APFS} unter iOS und
 MacOS sind außerdem die benötigten Volumes eines Containers.  Während iOS mit
-einem Systemvolume zur Speicherung der Systemdaten und einem Datenvolume fuer
+einem Systemvolume zur Speicherung der Systemdaten und einem Datenvolume für
 die Nutzerdaten auskommt \cite[S. 49]{apple2020}, benötigt MacOS 3 weitere
 Volumes \cite[S. 48]{apple2020}. Diese sind zum einen das Preboot-Volume,
 welches Informationen über alle Volumes des Containers enthält und vor allem zum

@@ -1,7 +1,7 @@
 \section{Sicherheit im Alltag}
 Für die Sicherheit im Alltag hat Apple eine Vielzahl von Systemmechanismen implementiert, 
 die den Schutz der Benutzerdaten sicherstellen. Die Dateiverschlüsselung bei Endgeräten mit iOS- und 
-iPadOS als Betriebssysteme wird von Apple als Datensicherheit bezeichnet und ist das Pendant zum 
+iPadOS, als Betriebssysteme, wird von Apple als Datensicherheit bezeichnet und ist das Pendant zum 
 FileVault unter macOS \cite{apple2020}.
 
 Der Ausgangspunkt für die Hierarchien der Schlüsselverwaltung befindet sich bei Geräten 
@@ -16,7 +16,7 @@ Zugriff auf Daten verhindert. Der Datenzugriff von Apps wird in der Regel durch 
 Forcierung von Data Vaults ergänzt. Simplifiziert sind Data Vaults invertierte Sandboxes, die nicht die Aufrufe einer App, 
 sondern den Zugriff auf geschützte Daten einschränken \cite{apple2020}.
 
-Die offensichtlichen Sicherheitsmechanismen, die der Benutzer im Alltag erfährt, werden im Folgenden vorgestellt.
+Die offensichtlichen Sicherheitsmechanismen, die der Benutzer im Alltag schützen, werden im Folgenden vorgestellt.
 
 \subsection{Gerätecodes}
 Ein Gerätecode wird von dem Benutzer des Geräts eingegeben, um sicherzustellen,
@@ -46,14 +46,14 @@ angeschlossenen Geräte vielfältig sein können und es keine kryptographisch zu
 die Geräte vor einer Datenverbindung zu identifizieren, verlangen iPhones bzw. iPads die Eingabe des Gerätecodes,
 bevor eine Datenverbindung aufgebaut werden kann \cite[S. 65]{apple2020}. Dies verhindert den unautorisierten
 Zugriff auf die Daten durch ein Fremdsystem. Nachdem die Datenverbindung zu einem Fremdsystem autorisiert wurde, 
-muss der Gerätecode, für eine bestimmte Zeitspanne, nicht mehr für den Verbindungsaufbau zu dem System 
+muss der Gerätecode für eine bestimmte Zeitspanne nicht mehr für den Verbindungsaufbau zu dem System 
 eingegeben werden. Dadurch können Nutzer, die regelmäßige Verbindungen zu bestimmten Geräten herstellen möchten,
 für eine Zeitspanne auf eine erneute Authentifizierung verzichten
 \cite{apple2020}.
 
 \subsection{Schutz persönlicher Daten}
 Mobile Anwendungen benötigen oftmals den Zugriff auf bestimmte Funktionaliten oder Daten des Smartphones.
-Diese stehen den Anwendungen aber nicht einfach zur Verfügung, Nutzer können für jede App festlegen, auf 
+Diese stehen den Anwendungen aber nicht einfach zur Verfügung. Nutzer können für jede App festlegen, auf 
 welche personenbezogene Informationen zugegriffen werden darf. Realisiert wird dies mit verschiedenen Technologien 
 wie bspw. dem Data Vault. In den Einstellungen des Betriebssystems kann der Nutzer einer App die Rechte für den Zugriff 
 auf individuelle Informationen geben. In einigen systemrelevanten Apps von iOS und iPadOS wird der Zugriff jedoch erzwungen, 

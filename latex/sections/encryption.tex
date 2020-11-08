@@ -3,15 +3,15 @@ Kryptographische Schlüssel werden von dem Betriebsystem für die Ver- und Entsc
 Informationen verwendet. Daten werden verschlüsselt, um die darin enthaltenden Informationen 
 vor potentielle Angreifer geheimzuhalten. Die Verschlüsselung von Daten kann vielfältig eingesetzt 
 werden, typische Anwendungszwecke können bspw. die Verschlüsselung einzelner Dateien oder gar 
-des gesamten internen Dateisystems sein \cite{symmetricenc}.
+des gesamten internen Dateisystems sein \cite{apple2020}.
 
 
 \subsection{Verschlüsselungalgorithmus}
-Für die Verschlüsselung der Datenaustausches zwischen Komponenten, Systemen oder Apps
+Für die Verschlüsselung des Datenaustausches zwischen Komponenten, Systemen oder Apps
 werden unter iOS unterschiedliche Varianten des etablierten Verschlüsselungsverfahrens
 AES (Advanced Encryption Standard) eingesetzt. AES ist ein symmetrisches Verschlüsselungsverfahren,
 die miteinander interagierenden Parteien müssen also einen gemeinsamen Schlüssel austauschen, welcher
-daraufhin für das ver- und entschlüsseln von Informationen verwendet wird
+daraufhin für das Ver- und Entschlüsseln von Informationen verwendet wird
 \cite{symmetricenc,apple2020}.
 
 	\begin{figure}[h]
@@ -27,7 +27,7 @@ daraufhin für das ver- und entschlüsseln von Informationen verwendet wird
 Anhand der Beschreibung des symmetrischen Verschlüsselungsverfahren wird deutlich, dass die Schlüssel in
 gesicherten Umgebung verwaltet und verwendet werden müssen. Anderenfalls kann nicht von der Vertraulichkeit 
 der Daten ausgegangen werden, weil ein Angreifer möglicherweise durch den Diebstahl der Schlüssel den Datenverkehr
-mitlesen kann \cite{apple2020}.
+mitlesen und anpassen kann \cite{apple2020}.
 
 Aus diesem Grund werden in modern iOS-, iPadOS- und watchOS-Geräten Sicherheitschips verbaut, die einen sicheren
 Coprozessor enhalten. Dieser Coprozessor wird auch \textit{Secure Enclave} genannt und ist ein hardwarebasierter 
@@ -92,7 +92,7 @@ werden \cite{apple2020keychain_application_groups}.
 \subsubsection{Keybags}
 Keybags sammeln und verwalten die Schlüssel der verschiedenen
 Datensicherheitsklassen. Jeder Keybag verwaltet aber nur die Klassenschlüssel
-seines Types, im dem folgenden Kapitel werden diese vorgestellt und ihre
+seines Types, in dem folgenden Kapitel werden diese vorgestellt und ihre
 Funktionsweise erklärt \cite{apple2020}.  Für die verschiedenen kryptografischen
 Verfahren, die bei der Gewährleistung von Sicherheit in iOS zur Anwendung
 kommen, werden Schlüssel benötigt. Diese werden in so genannten \textit{Keybags}
